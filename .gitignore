@@ -1,0 +1,6 @@
+.gitconfig.local
+*.local
+
+.env
+*.pem
+*.key
