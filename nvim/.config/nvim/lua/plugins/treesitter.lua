@@ -18,6 +18,7 @@ return {
 		"c",
 		"cpp",
 		"java",
+		"python",
 	    },
 	    auto_install = false,
 	})

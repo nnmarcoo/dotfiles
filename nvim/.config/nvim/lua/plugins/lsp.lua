@@ -39,7 +39,8 @@ return {
                 opts.settings = {
                     ["rust-analyzer"] = {
                         cargo = { allFeatures = true },
-                        checkOnSave = { command = "clippy" },
+                        checkOnSave = true,
+                        check = { command = "clippy" },
                         procMacro = { enable = true },
                     },
                 }
