@@ -35,6 +35,7 @@ return {
                 },
                 root_dir = jdtls.setup.find_root({
                     ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "build.gradle.kts",
+                    ".classpath", ".project",
                 }),
                 capabilities = require("cmp_nvim_lsp").default_capabilities(),
                 settings = {
