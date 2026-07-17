@@ -18,7 +18,14 @@ return {
                 "lua_ls",
                 "ts_ls",
                 "jdtls",
+                "eslint",
+                "cssls",
+                "jsonls",
             },
+            -- jdtls is started/managed by nvim-jdtls (lua/plugins/java.lua).
+            -- Exclude it here so mason-lspconfig doesn't also vim.lsp.enable it,
+            -- which would attach a second, conflicting LSP client to Java files.
+            automatic_enable = { exclude = { "jdtls" } },
         })
 
         local function setup(server, opts)
@@ -64,6 +71,16 @@ return {
                 opts.settings = {
                     typescript = { format = { semicolons = "insert" } },
                     javascript = { format = { semicolons = "insert" } },
+                }
+            end
+
+            if server == "cssls" then
+                -- Jutro stylesheets use SCSS at-rules (@mixin, @include, ...);
+                -- stop cssls from reporting them as "unknown at rule".
+                opts.settings = {
+                    css  = { lint = { unknownAtRules = "ignore" } },
+                    scss = { lint = { unknownAtRules = "ignore" } },
+                    less = { lint = { unknownAtRules = "ignore" } },
                 }
             end
 

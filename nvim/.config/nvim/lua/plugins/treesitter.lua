@@ -10,6 +10,8 @@ return {
             "typescript",
             "javascript",
             "css",
+            "scss",
+            "json",
             "rust",
             "c",
             "cpp",
