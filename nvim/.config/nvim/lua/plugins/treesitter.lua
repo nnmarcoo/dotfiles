@@ -16,6 +16,7 @@ return {
             "c",
             "cpp",
             "java",
+            "kotlin",
             "python",
             "markdown",
             "markdown_inline",

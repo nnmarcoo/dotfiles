@@ -1,3 +1,4 @@
+-- Keybind reference for this config: see KEYBINDS.md
 require('config.options')
 require('config.keybinds')
 

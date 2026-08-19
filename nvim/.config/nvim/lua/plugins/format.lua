@@ -13,6 +13,11 @@ return {
             },
         },
         opts = {
+            formatters = {
+                -- Google style is 2-space; AOSP is the same formatter at 4,
+                -- which matches this config's shiftwidth.
+                ["google-java-format"] = { prepend_args = { "--aosp" } },
+            },
             -- prettierd is fast; fall back to a project-local/global prettier.
             formatters_by_ft = {
                 javascript      = { "prettierd", "prettier", stop_after_first = true },
@@ -26,6 +31,11 @@ return {
                 html            = { "prettierd", "prettier", stop_after_first = true },
                 markdown        = { "prettierd", "prettier", stop_after_first = true },
                 yaml            = { "prettierd", "prettier", stop_after_first = true },
+                -- JVM: kotlin_lsp's formatting is still pre-alpha and jdtls
+                -- formats via Eclipse defaults, so route both to a real
+                -- formatter instead of letting the LSP fallback handle them.
+                kotlin          = { "ktlint" },
+                java            = { "google-java-format" },
             },
         },
     },
@@ -35,7 +45,7 @@ return {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         dependencies = { "williamboman/mason.nvim" },
         opts = {
-            ensure_installed = { "prettierd" },
+            ensure_installed = { "prettierd", "ktlint", "google-java-format" },
             run_on_start = true,
         },
     },

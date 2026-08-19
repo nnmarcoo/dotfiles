@@ -41,6 +41,17 @@ return {
                 settings = {
                     java = {
                         signatureHelp = { enabled = true },
+                        -- parameterNames defaults to "literals", which only
+                        -- labels literal arguments; "all" also labels
+                        -- variables, matching IntelliJ's parameter hints.
+                        -- (Key is inlayHints with a capital H -- the
+                        -- lowercase spelling VS Code once used is ignored.)
+                        inlayHints = {
+                            parameterNames = { enabled = "all" },
+                            variableTypes  = { enabled = true },
+                        },
+                        referencesCodeLens = { enabled = true },
+                        implementationsCodeLens = { enabled = true },
                         sources = {
                             organizeImports = {
                                 starThreshold = 9999,

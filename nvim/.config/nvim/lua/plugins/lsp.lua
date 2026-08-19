@@ -18,6 +18,7 @@ return {
                 "lua_ls",
                 "ts_ls",
                 "jdtls",
+                "kotlin_lsp",
                 "eslint",
                 "cssls",
                 "jsonls",
@@ -64,6 +65,17 @@ return {
                         diagnostics = { globals = { "vim" } },
                         telemetry = { enable = false },
                     },
+                }
+            end
+
+            if server == "kotlin_lsp" then
+                -- Anchor on the build file rather than letting the root
+                -- fall back to a .git ancestor -- in a monorepo that would
+                -- make the server index every module at once.
+                opts.root_markers = {
+                    "settings.gradle.kts", "settings.gradle",
+                    "build.gradle.kts", "build.gradle",
+                    "pom.xml", "workspace.json",
                 }
             end
 
